@@ -1,0 +1,13 @@
+prefix=/usr/local
+exec_prefix=${prefix}
+includedir=${prefix}/include
+libdir=${exec_prefix}/lib
+
+Name: uvgRTP
+Description: Open source RTP library for usability and effciency.
+URL:
+Version: 1.0.0
+CFlags:
+Libs: -L${libdir} -luvgrtp -pthread
+Requires:
+
