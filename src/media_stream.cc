@@ -89,8 +89,10 @@ rtp_error_t uvg_rtp::media_stream::init_connection()
             return RTP_BIND_ERROR;
         }
     } else {
+      if(src_port_ != -1) {
         if ((ret = socket_->bind(AF_INET, INADDR_ANY, src_port_)) != RTP_OK)
-            return ret;
+          return ret;
+      }
     }
 
     /* Set the default UDP send/recv buffer sizes to 4MB as on Windows
@@ -103,8 +105,10 @@ rtp_error_t uvg_rtp::media_stream::init_connection()
     if ((ret = socket_->setsockopt(SOL_SOCKET, SO_RCVBUF, (const char *)&buf_size, sizeof(int))) != RTP_OK)
         return ret;
 
-    addr_out_ = socket_->create_sockaddr(AF_INET, addr_, dst_port_);
-    socket_->set_sockaddr(addr_out_);
+    if(dst_port_ != -1) {
+      addr_out_ = socket_->create_sockaddr(AF_INET, addr_, dst_port_);
+      socket_->set_sockaddr(addr_out_);
+    }
 
     return ret;
 }
