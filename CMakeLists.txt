@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.5)
 
 project(uvgrtp)
 
+add_definitions(-DNDEBUG=1)
+
 add_library(uvgrtp STATIC
 	src/clock.cc
 	src/crypto.cc
