@@ -59,7 +59,7 @@ rtp_error_t uvg_rtp::pkt_dispatcher::install_receive_hook(
 uvg_rtp::frame::rtp_frame *uvg_rtp::pkt_dispatcher::pull_frame()
 {
     while (frames_.empty() && this->active())
-        std::this_thread::sleep_for(std::chrono::milliseconds(20));
+        std::this_thread::sleep_for(std::chrono::milliseconds(1));
 
     if (!this->active())
         return nullptr;
