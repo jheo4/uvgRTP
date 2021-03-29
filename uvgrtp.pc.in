@@ -1,7 +1,6 @@
-prefix=/usr/local
-exec_prefix=${prefix}
-includedir=${prefix}/include
-libdir=${exec_prefix}/lib
+prefix=@CMAKE_INSTALL_PREFIX@
+libdir=@CMAKE_INSTALL_PREFIX@/lib
+includedir=@CMAKE_INSTALL_PREFIX@/include
 
 Name: uvgRTP
 Description: Open source RTP library for usability and effciency.

@@ -66,6 +66,14 @@ if (UNIX)
 	install(DIRECTORY include/ DESTINATION /usr/local/include/uvgrtp
 			FILES_MATCHING PATTERN "*.hh"
 	)
+
+  if(NOT DEFINED ENV{PKG_CONFIG_PATH})
+    set( PKG_CONFIG_PATH "/usr/local/lib/pkgconfig")
+    message("PKG_CONFIG_PATH is not found. Set it with ${PKG_CONFIG_PATH}")
+  endif(NOT DEFINED ENV{PKG_CONFIG_PATH})
+
+  configure_file("uvgrtp.pc.in" "uvgrtp.pc" @ONLY)
+  install(FILES ${CMAKE_CURRENT_BINARY_DIR}/uvgrtp.pc DESTINATION ${PKG_CONFIG_PATH}/)
 endif (UNIX)
 
 if (WIN32)
